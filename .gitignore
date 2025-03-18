@@ -1,0 +1,6 @@
+# Ignore the .env file
+.env
+
+# Ignore the init SQL scripts but keep the examples files
+.docker/**/*.sql
+!.docker/**/*.EXAMPLE.sql
