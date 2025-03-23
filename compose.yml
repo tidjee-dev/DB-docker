@@ -84,7 +84,7 @@ services:
 volumes:
   mysql_data:
     driver: local
-  pgsql_data:
-    driver: local
-  pgadmin_data:
-    driver: local
+  # pgsql_data:
+  #   driver: local
+  # pgadmin_data:
+  #   driver: local
