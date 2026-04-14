@@ -22,11 +22,16 @@ It provides:
 
 - **Languages & Database**
 
-  [![MySQL](https://img.shields.io/badge/MySQL-latest-4479A1?logo=mysql)](https://www.mysql.com/)
+  [![MySQL](https://img.shields.io/badge/MySQL-8.4-4479A1?logo=mysql)](https://www.mysql.com/)
 
 - **Tools**
 
-  [![PHPMyAdmin](https://img.shields.io/badge/PHPMyAdmin-latest-4479A1?logo=phpmyadmin)](https://www.phpmyadmin.net/)
+  [![PHPMyAdmin](https://img.shields.io/badge/PHPMyAdmin-5.2-4479A1?logo=phpmyadmin)](https://www.phpmyadmin.net/)
+
+Pinned runtime versions used by this stack:
+
+- MySQL: `8.4`
+- phpMyAdmin: `5.2`
 
 ## 📌 Requirements
 
@@ -38,25 +43,39 @@ Before using this template, ensure you have [Docker](https://docs.docker.com/eng
 2. **Adapt the Docker configuration** to your needs
 
    Follow the instructions in the `compose.yml` file to configure the Docker environment.
-   - Copy the example `MODEL.env` file to `.env` and update it with your own values.
 
-     ```sh
-     cp MODEL.env .env
-     ```
+Pre-start checklist:
 
-   - Copy the MySQL init script to the `.docker` directory:
+- Copy `MODEL.env` to `.env`.
+- Set `MYSQL_ROOT_PASSWORD`.
+- Optional: set `MYSQL_PORT` if you do not want `3306`.
+- Optional: set `PHPMYADMIN_PORT` if you do not want `8080`.
 
-     ```sh
-     cp .docker/mysql/mysql-init.EXAMPLE.sql .docker/mysql/mysql-init.sql
-     ```
+- Copy the example `MODEL.env` file to `.env` and update it with your own values.
 
-   - Then update the values in the script accordingly.
+```sh
+cp MODEL.env .env
+```
 
 3. **Start the Docker Stack** with:
 
    ```sh
    docker compose up -d
    ```
+
+4. **Verify the stack**
+
+- Check services:
+
+  ```sh
+  docker compose ps
+  ```
+
+- Open phpMyAdmin at `http://localhost:8080` (or your custom `PHPMYADMIN_PORT`).
+
+- Wait until MySQL is `healthy` before using phpMyAdmin (startup may take a few seconds).
+
+- Log in with MySQL root credentials from `.env`.
 
 ## 🤝 Contributing
 
