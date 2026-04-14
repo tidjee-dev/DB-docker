@@ -12,9 +12,9 @@ This repository is the config for hosting databases in a development Docker envi
 
 It provides:
 
-✅ Support for **PostgreSQL** or **MySQL** databases
+✅ Support for **MySQL** databases
 
-✅ Database management tools: **pgAdmin** or **PHPMyAdmin**
+✅ Database management tool: **PHPMyAdmin**
 
 ✅ A **Docker** environment for easy setup
 
@@ -22,11 +22,11 @@ It provides:
 
 - **Languages & Database**
 
-  [![MySQL](https://img.shields.io/badge/MySQL-latest-4479A1?logo=mysql)](https://www.mysql.com/) [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-latest-316192?logo=postgresql)](https://www.postgresql.org/)
+  [![MySQL](https://img.shields.io/badge/MySQL-latest-4479A1?logo=mysql)](https://www.mysql.com/)
 
 - **Tools**
 
-  [![PHPMyAdmin](https://img.shields.io/badge/PHPMyAdmin-latest-4479A1?logo=phpmyadmin)](https://www.phpmyadmin.net/) [![pgAdmin](https://img.shields.io/badge/pgAdmin-latest-000)](https://www.pgadmin.org/)
+  [![PHPMyAdmin](https://img.shields.io/badge/PHPMyAdmin-latest-4479A1?logo=phpmyadmin)](https://www.phpmyadmin.net/)
 
 ## 📌 Requirements
 
@@ -38,28 +38,19 @@ Before using this template, ensure you have [Docker](https://docs.docker.com/eng
 2. **Adapt the Docker configuration** to your needs
 
    Follow the instructions in the `compose.yml` file to configure the Docker environment.
-
    - Copy the example `MODEL.env` file to `.env` and update it with your own values.
 
      ```sh
      cp MODEL.env .env
      ```
 
-   - Depending on your database of choice, copy the corresponding init script to the `.docker` directory.
+   - Copy the MySQL init script to the `.docker` directory:
 
-     - MySQL:
+     ```sh
+     cp .docker/mysql/mysql-init.EXAMPLE.sql .docker/mysql/mysql-init.sql
+     ```
 
-       ```sh
-       cp .docker/mysql/mysql-init-EXAMPLE.sql .docker/mysql/mysql-init.sql
-       ```
-
-     - PostgreSQL:
-
-       ```sh
-       cp .docker/pgsql/pgsql-init-EXAMPLE.sh .docker/pgsql/pgsql-init.sh
-       ```
-
-     - Then update the values in each script accordingly.
+   - Then update the values in the script accordingly.
 
 3. **Start the Docker Stack** with:
 

@@ -12,14 +12,10 @@ services:
   #                                  DATABASES                                  #
   #_--------------------------------------------------------------------------  #                                                                             #
   #? Remember to:                                                               #
-  #? - (Un)comment the volumes and tools related to the choosen database.       #
   #? - Update the .env file with the correct values.                            #
-  #? - Run the following command to create the init scripts you need:           #
-  #?   - MySQL:                                                                 #
-  #?     `cp .docker/mysql/mysql-init.EXAMPLE.sql .docker/mysql/mysql-init.sql` #
-  #?   - Postgres:                                                              #
-  #?     `cp .docker/pgsql/pgsql-init.EXAMPLE.sh .docker/pgsql/pgsql-init.sh`   #
-  #?   - Then update the values.                                                #
+  #? - Run the following command to create the MySQL init script you need:      #
+  #?   `cp .docker/mysql/mysql-init.EXAMPLE.sql .docker/mysql/mysql-init.sql`   #
+  #? - Then update the values.                                                  #
   #_===========================================================================_#
   mysql:
     image: mysql
@@ -33,23 +29,10 @@ services:
       - mysql_data:/var/lib/mysql
       - .docker/mysql/mysql-init.sql:/docker-entrypoint-initdb.d/mysql-init.sql:ro
 
-  # pgsql:
-  #   image: postgres
-  #   container_name: db_docker-pgsql
-  #   restart: unless-stopped
-  #   ports:
-  #     - "${PGSQL_PORT:-5432}:5432"
-  #   environment:
-  #     POSTGRES_USER: ${POSTGRES_USER:?'POSTGRES_USER is not set'}
-  #     POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?'POSTGRES_PASSWORD is not set'}
-  #   volumes:
-  #     - pgsql_data:/var/lib/postgresql/data
-  #     - ./.docker/pgsql/pgsql-init.sh:/docker-entrypoint-initdb.d/pgsql-init.sh:ro
-
   #_===========================================================================_#
   #                                    TOOLS                                    #
   #_---------------------------------------------------------------------------_#
-  # (Un)comment the tool related to the used database.                          #
+  # Tool for the MySQL database.                                                 #
   #_===========================================================================_#
   phpmyadmin:
     build: .docker/phpma
@@ -62,29 +45,11 @@ services:
     depends_on:
       - mysql
 
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   container_name: db_docker-pgadmin
-  #   restart: unless-stopped
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
-  #     PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
-  #   ports:
-  #     - "${PGADMIN_PORT}:80"
-  #   volumes:
-  #     - pgadmin_data:/var/lib/pgadmin
-  #   depends_on:
-  #     - pgsql
-
 #_=============================================================================_#
 #                                    VOLUMES                                    #
 #_-----------------------------------------------------------------------------_#
-#  (Un)comment the volume related to the used database.                         #
+#  Volume used by the MySQL database.                                            #
 #_=============================================================================_#
 volumes:
   mysql_data:
     driver: local
-  # pgsql_data:
-  #   driver: local
-  # pgadmin_data:
-  #   driver: local
