@@ -34,7 +34,9 @@ services:
   #                                    TOOLS                                    #
   #_---------------------------------------------------------------------------_#
   phpmyadmin:
-    build: .docker/phpma
+    build:
+      context: .docker/phpma
+      network: host
     container_name: db_docker-phpmyadmin
     restart: unless-stopped
     ports:
