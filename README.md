@@ -4,7 +4,7 @@
 
 ## 📝 Description
 
-This repository is the config for hosting databases in a development Docker environment.
+This repository is the config for hosting MySQL database in a development Docker environment.
 
 > [!WARNING]
 > This is for development purposes only.
@@ -12,21 +12,21 @@ This repository is the config for hosting databases in a development Docker envi
 
 It provides:
 
-✅ Support for **PostgreSQL** or **MySQL** databases
+✅ **MySQL** database with automatic initialization
 
-✅ Database management tools: **pgAdmin** or **PHPMyAdmin**
+✅ **PHPMyAdmin** for database management
 
 ✅ A **Docker** environment for easy setup
 
 ## 🚀 Tech Stack
 
-- **Languages & Database**
+- **Database**
 
-  [![MySQL](https://img.shields.io/badge/MySQL-latest-4479A1?logo=mysql)](https://www.mysql.com/) [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-latest-316192?logo=postgresql)](https://www.postgresql.org/)
+  [![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?logo=mysql)](https://www.mysql.com/)
 
 - **Tools**
 
-  [![PHPMyAdmin](https://img.shields.io/badge/PHPMyAdmin-latest-4479A1?logo=phpmyadmin)](https://www.phpmyadmin.net/) [![pgAdmin](https://img.shields.io/badge/pgAdmin-latest-000)](https://www.pgadmin.org/)
+  [![PHPMyAdmin](https://img.shields.io/badge/PHPMyAdmin-latest-4479A1?logo=phpmyadmin)](https://www.phpmyadmin.net/)
 
 ## 📌 Requirements
 
@@ -35,37 +35,36 @@ Before using this template, ensure you have [Docker](https://docs.docker.com/eng
 ## 🛠️ How to Use
 
 1. **Clone** this repository
-2. **Adapt the Docker configuration** to your needs
+2. **Configure the environment**:
 
-   Follow the instructions in the `compose.yml` file to configure the Docker environment.
+   Copy the example `MODEL.env` file to `.env` and update it with your own values.
 
-   - Copy the example `MODEL.env` file to `.env` and update it with your own values.
+   ```sh
+   cp MODEL.env .env
+   ```
 
-     ```sh
-     cp MODEL.env .env
-     ```
+   Update the passwords and configuration in the `.env` file.
 
-   - Depending on your database of choice, copy the corresponding init script to the `.docker` directory.
+3. **Set up MySQL initialization** (optional):
 
-     - MySQL:
+   Copy the MySQL init script if you need custom database initialization:
 
-       ```sh
-       cp .docker/mysql/mysql-init-EXAMPLE.sql .docker/mysql/mysql-init.sql
-       ```
+   ```sh
+   cp .docker/mysql/mysql-init.EXAMPLE.sql .docker/mysql/mysql-init.sql
+   ```
 
-     - PostgreSQL:
+   Then update the script with your SQL commands.
 
-       ```sh
-       cp .docker/pgsql/pgsql-init-EXAMPLE.sh .docker/pgsql/pgsql-init.sh
-       ```
-
-     - Then update the values in each script accordingly.
-
-3. **Start the Docker Stack** with:
+4. **Start the Docker Stack**:
 
    ```sh
    docker compose up -d
    ```
+
+## 🌐 Access Points
+
+- **MySQL**: `localhost:3306` (or your configured `MYSQL_PORT`)
+- **PHPMyAdmin**: `http://localhost:8080` (or your configured `PHPMYADMIN_PORT`)
 
 ## 🤝 Contributing
 
